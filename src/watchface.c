@@ -16,7 +16,7 @@ void main_window_load(Window *window){
 
   //  Create the TextLayer with specific bounds
   s_time_layer = text_layer_create(
-    GRect(0, PBL_IF_ROUND_ELSE(65, 59), bounds.size.w, 80));
+    GRect(0, PBL_IF_ROUND_ELSE(65, 59), bounds.size.w, 50));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorBlack);
   text_layer_set_text(s_time_layer, "00:00");
@@ -26,7 +26,7 @@ void main_window_load(Window *window){
 
   //Create TextLayer for Date
   s_date_layer = text_layer_create(
-    GRect(0, PBL_IF_ROUND_ELSE(41, 35), bounds.size.w, 25));
+    GRect(0, PBL_IF_ROUND_ELSE(41, 35), bounds.size.w, 30));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorBlack);
   text_layer_set_text(s_date_layer, "Mon, 01 Jan");
@@ -36,7 +36,7 @@ void main_window_load(Window *window){
 
   // Create Battery Layer
   s_battery_layer = layer_create(
-    GRect(0, PBL_IF_ROUND_ELSE(119, 113), bounds.size.w, 10));
+    GRect(0, PBL_IF_ROUND_ELSE(118, 112), bounds.size.w, 10));
   layer_set_update_proc(s_battery_layer, update_battery);
   layer_add_child(window_layer, s_battery_layer);
   APP_LOG(APP_LOG_LEVEL_INFO, "Battery Icon is displayed");
