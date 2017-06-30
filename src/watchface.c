@@ -100,11 +100,8 @@ void update_time(){
 }
 
 void update_battery(Layer *layer, GContext *ctx){
-  double battery_remain; //1: 10%/20%, 2: 30%/40% 
-  if (s_battery_level % 20 == 10)
-    battery_remain = ((int) s_battery_level / 20) + 1;
-  else
-    battery_remain = (int) s_battery_level  / 20;
+  // [0] 00-09; [1] 10-29; [2] 30-49; [3] 50-69; [4] 70-89; [5] 90-100;
+  int battery_remain = (s_battery_level + 10) / 20;
 
   //Draw the circles;
   int x = PBL_IF_ROUND_ELSE(57.5, 39.5), y = 4.5;
