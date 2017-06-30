@@ -1,24 +1,27 @@
-# Minimal Watchface
-A simple Pebble watchface for Pebble and Pebble Time.
+# Minimal Black
 
-![minimal diorite watchface](screenshots/screenshot-diorite.png)
+> A simple watchface for Pebble and Pebble Time.
+
 ![minimal basalt watchface](screenshots/screenshot-basalt.png)
-![minimal chalk watchface](screenshots/screenshot-chalk.png)
 
+## Background
 
+I've forked this project from Amos Tan's [pebble-watchface-minimal]. My primary
+motivations were:
 
-## Warning
-First time with C, so there might be bugs around.
+- to invert the colors from black-on-white to black-on-white
+- to have a starting watchface to tinker and tweak
 
-## Version History
+## Changes
 
-###### V1.4
-Added support for Diorite
+For a complete list of changes, see the commit log.
 
-###### V1.3
-Added support for Chalk
+- Shows a "No Bluetooth" icon and buzzes when Bluetooth disconnects
+- Bold the date font, for better readability
+- Simplify some of the logic, clean up some of the code
 
-###### V1.1:
-UI Bug Fixes
-###### V1:
-Initial Release
+## License
+
+See [LICENSE](LICENSE/).
+
+[pebble-watchface-minimal]: https://github.com/AlphaTRL/pebble-watchface-minimal
