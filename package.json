@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "0.9.0",
   "author": "Amos Tan",
   "private": true,
   "dependencies": {},
@@ -12,7 +12,7 @@
       "media": []
     },
     "projectType": "native",
-    "uuid": "",
+    "uuid": "38878d05-4a34-4237-9916-6914e5d99d9a",
     "messageKeys": {
       "dummy": 0
     },
@@ -31,5 +31,5 @@
     ],
     "capabilities": []
   },
-  "name": "Minimal"
+  "name": "Minimal Black"
 }
