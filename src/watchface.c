@@ -64,16 +64,25 @@ void update_time(){
   struct tm *tick_time = localtime(&temp);
 
   //Write the current time and mins into a buffer
+  //NOTE(jez): These buffers have to be "long-lived" (aka static or malloc'd)
+  //See text_layer_set_text documentation.
   static char s_buffer[8];
   strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ?
     "%H:%M" : "%I:%M", tick_time);
+
+  //Strip leading '0' from "%I" (i.e., "%-l" if we had glibc)
+  const char *time_str;
+  if (clock_is_24h_style())
+    time_str = s_buffer;
+  else
+    time_str = s_buffer + (('0' == s_buffer[0]) ? 1 : 0);
 
   //Write the current date into a buffer
   static char date_buffer[16];
   strftime(date_buffer, sizeof(date_buffer), "%a, %d %b", tick_time);
 
   //Display time and dateon time layer
-  text_layer_set_text(s_time_layer, s_buffer);
+  text_layer_set_text(s_time_layer, time_str);
   text_layer_set_text(s_date_layer, date_buffer);
 }
 
