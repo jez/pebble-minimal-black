@@ -22,6 +22,13 @@ static void init(){
 	battery_state_service_subscribe(battery_handler);
 	//Initial Battery Update
 	battery_handler(battery_state_service_peek());
+
+	//Register for bluetooth disconnects
+	connection_service_subscribe((ConnectionHandlers) {
+	  .pebble_app_connection_handler = bluetooth_handler
+	});
+	// Show the correct state of the BT connection from the start
+	bluetooth_handler(connection_service_peek_pebble_app_connection());
 }
 
 static void deinit(){

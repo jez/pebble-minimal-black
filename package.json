@@ -9,7 +9,13 @@
   "pebble": {
     "sdkVersion": "3",
     "resources": {
-      "media": []
+      "media": [
+        {
+          "type": "bitmap",
+          "name": "IMAGE_BT_ICON",
+          "file": "bt-icon.png"
+        }
+      ]
     },
     "projectType": "native",
     "uuid": "38878d05-4a34-4237-9916-6914e5d99d9a",

@@ -7,6 +7,7 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed);
 void update_time();
 void update_battery(Layer *layer, GContext *ctx);
 void battery_handler(BatteryChargeState charge_state);
+void bluetooth_handler(bool connected);
 void init_watchface();
 void deinit_watchface();
 

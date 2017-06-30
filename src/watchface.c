@@ -9,6 +9,9 @@ static Layer *s_battery_layer;
 
 static int s_battery_level;
 
+static BitmapLayer *s_background_layer, *s_bt_icon_layer;
+static GBitmap *s_background_bitmap, *s_bt_icon_bitmap;
+
 void main_window_load(Window *window){
   window_set_background_color(window, GColorBlack);
 
@@ -42,6 +45,12 @@ void main_window_load(Window *window){
   layer_set_update_proc(s_battery_layer, update_battery);
   layer_add_child(window_layer, s_battery_layer);
   APP_LOG(APP_LOG_LEVEL_INFO, "Battery Icon is displayed");
+
+  // Initialize the bluetooth icon resources
+  s_bt_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BT_ICON);
+  s_bt_icon_layer = bitmap_layer_create(GRect(4, 0, 30, 30));
+  bitmap_layer_set_bitmap(s_bt_icon_layer, s_bt_icon_bitmap);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_bt_icon_layer));
 }
 
 void main_window_unload(Window *window){
@@ -51,6 +60,10 @@ void main_window_unload(Window *window){
 
   //Destroy Battery
   layer_destroy(s_battery_layer);
+
+  //Destroy Bluetooth icon bitmap
+  gbitmap_destroy(s_bt_icon_bitmap);
+  bitmap_layer_destroy(s_bt_icon_layer);
 }
 
 //Tell the Time
@@ -117,6 +130,15 @@ void battery_handler(BatteryChargeState charge_state){
   s_battery_level = charge_state.charge_percent;
   //Update meter
   layer_mark_dirty(s_battery_layer);
+}
+
+void bluetooth_handler(bool connected) {
+  // Show "no Bluetooth" icon if bluetooth is disconnected
+  layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), connected);
+
+  if (!connected) {
+    vibes_double_pulse();
+  }
 }
 
 void init_watchface() {
